@@ -15,20 +15,30 @@ def audit_log_save(sender, instance, created, **kwargs):
     if sender == AuditLog:
         return
     
+    # Skip during migrations
+    from django.core.management.commands import migrate
+    import inspect
+    if 'migrate' in inspect.stack()[-1].filename:
+        return
+    
     # Skip certain models that don't need auditing
-    skip_models = ['Session', 'LogEntry']
+    skip_models = ['Session', 'LogEntry', 'Migration']
     if sender.__name__ in skip_models:
         return
     
     action = 'CREATE' if created else 'UPDATE'
     
-    AuditLog.objects.create(
-        action=action,
-        model_name=sender.__name__,
-        object_id=instance.id,
-        object_repr=str(instance)[:200],
-        changes={'instance': instance.__dict__} if not created else {}
-    )
+    try:
+        AuditLog.objects.create(
+            action=action,
+            model_name=sender.__name__,
+            object_id=instance.id,
+            object_repr=str(instance)[:200],
+            changes={'instance': instance.__dict__} if not created else {}
+        )
+    except:
+        # Silently fail during migrations or setup
+        pass
 
 
 @receiver(post_delete)
@@ -40,14 +50,24 @@ def audit_log_delete(sender, instance, **kwargs):
     if sender == AuditLog:
         return
     
+    # Skip during migrations
+    from django.core.management.commands import migrate
+    import inspect
+    if 'migrate' in inspect.stack()[-1].filename:
+        return
+    
     # Skip certain models
-    skip_models = ['Session', 'LogEntry']
+    skip_models = ['Session', 'LogEntry', 'Migration']
     if sender.__name__ in skip_models:
         return
     
-    AuditLog.objects.create(
-        action='DELETE',
-        model_name=sender.__name__,
-        object_id=instance.id,
-        object_repr=str(instance)[:200],
-    )
+    try:
+        AuditLog.objects.create(
+            action='DELETE',
+            model_name=sender.__name__,
+            object_id=instance.id,
+            object_repr=str(instance)[:200],
+        )
+    except:
+        # Silently fail during migrations or setup
+        pass

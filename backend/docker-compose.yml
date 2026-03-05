@@ -178,7 +178,7 @@ services:
     image: rediscommander/redis-commander:latest
     container_name: mi_proyecto_redis_commander
     environment:
-      REDIS_HOSTS=local:redis:6379
+      REDIS_HOSTS: local:redis:6379
     ports:
       - "${REDIS_COMMANDER_PORT}:8081"
     networks:

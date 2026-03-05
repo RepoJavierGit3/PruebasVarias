@@ -1,7 +1,5 @@
 from django.db import models
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
+from django.utils import timezone
 
 
 class TimeStampedModel(models.Model):
@@ -75,7 +73,12 @@ class AuditLog(BaseModel):
         ('LOGOUT', 'Logout'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.ForeignKey(
+        'users.User', 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True
+    )
     action = models.CharField(max_length=10, choices=ACTION_CHOICES)
     model_name = models.CharField(max_length=100)
     object_id = models.PositiveIntegerField(null=True, blank=True)
