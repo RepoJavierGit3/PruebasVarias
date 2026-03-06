@@ -1,0 +1,17 @@
+<div class="app-container">
+  <!-- Header -->
+  <app-header (menuToggle)="toggleMenu()"></app-header>
+
+  <!-- Main Content -->
+  <main class="main-content" [class.menu-open]="isMenuOpen" (click)="closeMenu()">
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <app-footer></app-footer>
+
+  <!-- Loading Overlay -->
+  <app-loading></app-loading>
+</div>
