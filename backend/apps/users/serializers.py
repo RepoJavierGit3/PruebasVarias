@@ -48,24 +48,19 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data.pop('password_confirm')
         user = User.objects.create_user(**validated_data)
-        
-        # Create user profile and settings
-        UserProfile.objects.create(user=user)
-        UserSettings.objects.create(user=user)
-        
         return user
 
 
 class LoginSerializer(serializers.Serializer):
-    email = serializers.EmailField()
+    username = serializers.CharField()
     password = serializers.CharField()
 
     def validate(self, attrs):
-        email = attrs.get('email')
+        username = attrs.get('username')
         password = attrs.get('password')
 
-        if email and password:
-            user = authenticate(username=email, password=password)
+        if username and password:
+            user = authenticate(username=username, password=password)
             if not user:
                 raise serializers.ValidationError('Credenciales inválidas')
             if not user.is_active:
@@ -73,7 +68,7 @@ class LoginSerializer(serializers.Serializer):
             attrs['user'] = user
             return attrs
         else:
-            raise serializers.ValidationError('Debe incluir email y password')
+            raise serializers.ValidationError('Debe incluir username y password')
 
 
 class UserProfileSerializer(serializers.ModelSerializer):

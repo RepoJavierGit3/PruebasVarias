@@ -17,10 +17,9 @@ import { FooterComponent } from './core/shared/components/footer/footer.componen
 import { LoadingComponent } from './core/shared/components/loading/loading.component';
 import { PaginationComponent } from './core/shared/components/pagination/pagination.component';
 
-// Feature components
-import { LoginComponent } from './features/auth/components/login/login.component';
-import { RegisterComponent } from './features/auth/components/register/register.component';
-import { ProfileComponent } from './features/auth/components/profile/profile.component';
+// Feature modules
+import { AuthModule } from './features/auth/auth.module';
+import { ProductsModule } from './features/products/products.module';
 
 // Guards
 import { AuthGuard } from './core/guards/auth.guard';
@@ -41,9 +40,6 @@ import { CurrencyPipe } from './core/shared/pipes/currency.pipe';
     FooterComponent,
     LoadingComponent,
     PaginationComponent,
-    LoginComponent,
-    RegisterComponent,
-    ProfileComponent,
     SearchPipe,
     CurrencyPipe
   ],
@@ -62,7 +58,9 @@ import { CurrencyPipe } from './core/shared/pipes/currency.pipe';
       timeOut: 5000,
       extendedTimeOut: 1000
     }),
-    NgbModule
+    NgbModule,
+    AuthModule,
+    ProductsModule
   ],
   providers: [
     AuthGuard,

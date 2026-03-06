@@ -1,0 +1,91 @@
+footer {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
+  
+  h5 {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-link {
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: var(--primary-color) !important;
+      text-decoration: underline !important;
+    }
+    
+    i {
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+  }
+  
+  .social-link {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+  }
+  
+  .input-group {
+    .form-control {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      
+      &:focus {
+        background-color: rgba(255, 255, 255, 0.15);
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        color: #fff;
+      }
+    }
+    
+    .btn-primary {
+      border-color: var(--primary-color);
+      
+      &:hover {
+        background-color: darken(var(--primary-color), 10%);
+        border-color: darken(var(--primary-color), 10%);
+      }
+    }
+  }
+  
+  hr {
+    opacity: 0.3;
+  }
+  
+  .text-muted {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  footer {
+    text-align: center;
+    
+    .col-md-6 {
+      text-align: center !important;
+      margin-bottom: 1rem;
+    }
+    
+    .social-link {
+      margin: 0 0.25rem;
+    }
+  }
+}

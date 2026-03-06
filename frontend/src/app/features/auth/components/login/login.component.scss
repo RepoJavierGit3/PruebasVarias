@@ -1,0 +1,202 @@
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  
+  .login-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    
+    .login-title {
+      color: var(--dark-color);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      
+      i {
+        color: var(--primary-color);
+      }
+    }
+    
+    .form-label {
+      font-weight: 600;
+      color: var(--dark-color);
+      margin-bottom: 0.5rem;
+      
+      i {
+        color: var(--primary-color);
+        font-size: 0.875rem;
+      }
+    }
+    
+    .form-control {
+      border: 2px solid #e9ecef;
+      border-radius: 0.5rem;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      
+      &:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      }
+      
+      &::placeholder {
+        color: #6c757d;
+        font-style: italic;
+      }
+      
+      &.is-invalid {
+        border-color: #dc3545;
+        
+        &:focus {
+          border-color: #dc3545;
+          box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+        }
+      }
+    }
+    
+    .input-group {
+      .btn-outline-secondary {
+        border: 2px solid #e9ecef;
+        border-left: none;
+        border-radius: 0 0.5rem 0.5rem 0;
+        
+        &:hover {
+          background-color: #f8f9fa;
+          border-color: #dee2e6;
+        }
+        
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+    
+    .form-check {
+      .form-check-input {
+        border: 2px solid #dee2e6;
+        
+        &:checked {
+          background-color: var(--primary-color);
+          border-color: var(--primary-color);
+        }
+        
+        &:focus {
+          border-color: var(--primary-color);
+          box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+      }
+      
+      .form-check-label {
+        color: var(--dark-color);
+        font-weight: 500;
+      }
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color), #0056b3);
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
+      }
+      
+      &:disabled {
+        opacity: 0.7;
+        transform: none;
+        box-shadow: none;
+      }
+    }
+    
+    .alert-danger {
+      border: none;
+      border-radius: 0.5rem;
+      background-color: #f8d7da;
+      color: #721c24;
+      font-weight: 500;
+      
+      i {
+        color: #dc3545;
+      }
+    }
+    
+    .text-decoration-none {
+      color: var(--primary-color);
+      font-weight: 600;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: #0056b3;
+        text-decoration: underline !important;
+      }
+    }
+    
+    .social-login {
+      border-top: 1px solid #dee2e6;
+      padding-top: 1.5rem;
+      
+      .text-muted {
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+      
+      .btn-outline-primary,
+      .btn-outline-secondary {
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .login-container {
+    padding: 1rem 0;
+    
+    .login-card {
+      padding: 2rem;
+      margin: 0 1rem;
+      
+      .login-title {
+        font-size: 1.5rem;
+      }
+      
+      .btn-primary {
+        padding: 0.625rem 0.875rem;
+        font-size: 0.875rem;
+      }
+    }
+  }
+}
+
+// Animation for form validation
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.form-control.is-invalid {
+  animation: shake 0.3s ease-in-out;
+}
