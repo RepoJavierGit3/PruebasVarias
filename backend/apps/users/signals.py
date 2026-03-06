@@ -12,8 +12,8 @@ def create_user_profile_and_settings(sender, instance, created, **kwargs):
     Create user profile and settings when a new user is created
     """
     if created:
-        UserProfile.objects.create(user=instance)
-        UserSettings.objects.create(user=instance)
+        UserProfile.objects.get_or_create(user=instance)
+        UserSettings.objects.get_or_create(user=instance)
 
 
 @receiver(post_save, sender=User)

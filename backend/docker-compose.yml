@@ -57,7 +57,7 @@ services:
       - DB_HOST=postgres
       - DB_PORT=5432
       - REDIS_URL=redis://redis:6379/0
-      - ALLOWED_HOSTS=localhost,127.0.0.1,backend
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
     volumes:
       - static_volume:/app/staticfiles
       - media_volume:/app/media
